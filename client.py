@@ -18,7 +18,11 @@ while running:
                 print "Disconnected from server!"
                 running = False
         elif s == sys.stdin:
-            user_input = s.readline()
-            my_socket.sendall(user_input)
+            user_input = s.readline().rstrip("\n")
+
+            if user_input == "quit":
+                running = False
+            else:
+                my_socket.sendall(user_input)
 
 my_socket.close()
